@@ -21,6 +21,13 @@ public class FamousQuotes {
         quotes[8] = "Time reveals truth.";
         quotes[9] = "Start before you’re ready.";
 
+        //get user input
+        System.out.println("Pick a number 1 - 10:");
+        int command = scanner.nextInt();
+
+        //print out quote based on what number user entered
+        System.out.println(quotes[command]);
+
 
 
     }
