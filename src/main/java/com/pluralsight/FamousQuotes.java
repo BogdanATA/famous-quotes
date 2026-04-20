@@ -1,11 +1,13 @@
 package com.pluralsight;
 
+
 import java.util.Scanner;
 
 public class FamousQuotes {
     public static void main(String[] args) {
 
         Scanner scanner = new Scanner(System.in);
+
 
         //list of quotes
         String[] quotes = new String[10];
@@ -21,17 +23,36 @@ public class FamousQuotes {
         quotes[8] = "Time reveals truth.";
         quotes[9] = "Start before you’re ready.";
 
-        try {
+
+        boolean isDone = false;
+        while (!isDone) {
+
             //get user input
             System.out.println("Pick a number 1 - 10:");
-            int command = scanner.nextInt();
+            System.out.println("Or enter R for a random quote");
+            String command = scanner.nextLine();
 
-            //print out quote based on what number user entered
-            System.out.println(quotes[command]);
-        } catch (Exception e) {
-            System.out.println("Your number was out of range");
+
+            //hides error if user picks number out of range
+            try {
+                if (command.equalsIgnoreCase("R")) {
+                    int randomIndex = (int)(Math.random() * quotes.length); // random number 0-1 multiplied by length of array
+                    System.out.println(quotes[randomIndex] + "\n");
+                } else {
+                    //print out quote based on what number user entered
+                    int choice = Integer.parseInt(command); // if integer entered converts the string into an integer
+                    System.out.println(quotes[choice - 1] + "\n"); // prints quote choice index minus 1 to account for array starting at 0
+                }
+            } catch (Exception e) {
+                System.out.println("Invalid input");
+            }
+
+            System.out.println("Would you like to see another quote? (Y/N)");
+            String answer = scanner.nextLine();
+
+            if (!answer.equalsIgnoreCase("Y")) {
+                isDone = true;
+            }
         }
-
-
     }
 }
